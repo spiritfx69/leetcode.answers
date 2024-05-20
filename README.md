@@ -1,3 +1,5 @@
+<< started on 05/19/2024 >>
+
 |   #    |                              Title                                  |       Difficulty        |          Comment           |
 | ------ | ------------------------------------------------------------------- | ----------------------- | -------------------------- |
 | 1 | [Two Sum](https://github.com/terenceqzhou/leetcode05192024/blob/main/src/0001.%20Two%20Sum) | 🍏 Easy |
