@@ -1,1 +1,66 @@
+// C++
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* temp = new ListNode(0);
+        ListNode* num = temp;
+        int carry = 0;
+        while (l1 != NULL || l2 != NULL || carry == 1){
+            int n1 = l1 ? l1->val : 0;
+            int n2 = l2 ? l2->val : 0;
+            int s = carry + n1 + n2;
+            carry = s / 10;
+            num->next = new ListNode(s % 10);
+            num = num->next;
+            if (l1) l1 = l1->next;
+            if (l2) l2 = l2->next;
+        }
+        ListNode* sum = temp->next;
+        return sum;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode temp = new ListNode(0);
+        ListNode num = temp;
+        int carry = 0;
+        while (l1 != null || l2 != null || carry == 1){
+            int n1 = (l1 != null) ? l1.val : 0;
+            int n2 = (l2 != null) ? l2.val : 0;
+            int s = carry + n1 + n2;
+            carry = s / 10;
+            num.next = new ListNode(s % 10);
+            num = num.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+        ListNode sum = temp.next;
+        return sum;
+    }
+}
