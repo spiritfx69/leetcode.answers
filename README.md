@@ -1,5 +1,6 @@
-| #      |                                      Title                                  |      Difficulty             |     Comment                       |
-| ------ | -------------------------------------------------------------------      | -----------------------  | ------------------------- |
+|   #    |                              Title                                  |       Difficulty        |          Comment           |
+| ------ | ------------------------------------------------------------------- | ----------------------- | -------------------------- |
+| 1 | [Two Sum]() | 🍏 Easy |
 | 122 | [Best Time to Buy and Sell Stock II](https://github.com/terenceqzhou/leet/blob/main/src/0122.%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II) | 🍋 Medium | Greedy, 121, 122 |
 | 135 | [Candy](https://github.com/terenceqzhou/leet/blob/main/src/0135.%20Candy) | 🌶️ Hard | Greedy |
 | 406 | [Queue Reconstruction by Height](https://github.com/terenceqzhou/leet/blob/main/src/0406.%20Queue%20Reconstruction%20by%20Height) | 🍋 Medium | Greedy, sort 2D vector |
