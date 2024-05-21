@@ -1,0 +1,70 @@
+// C++
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int maxLen = 0;
+        string maxStr;
+        for (int i = 0; i < s.length(); i++){
+            int l = i, r = i, len = -1;
+            while (l >= 0 && r < s.length() && s[l] == s[r]){
+                len += 2;
+                if (len > maxLen){
+                    maxLen = len;
+                    maxStr = s.substr(l, r - l + 1);
+                }
+                l--;
+                r++;
+            }
+        }
+        for (int i = 0; i < s.length() - 1; i++){
+            int l = i, r = i + 1, len = 0;
+            while (l >= 0 && r < s.length() && s[l] == s[r]){
+                len += 2;
+                if (len > maxLen){
+                    maxLen = len;
+                    maxStr = s.substr(l, r - l + 1);
+                }
+                l--;
+                r++;
+            }
+        }
+        return maxStr;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String longestPalindrome(String s) {
+        int maxLen = 0;
+        String maxStr = "";
+        for (int i = 0; i < s.length(); i++){
+            int l = i, r = i, len = -1;
+            while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+                len += 2;
+                if (len > maxLen){
+                    maxLen = len;
+                    maxStr = s.substring(l, r + 1);
+                }
+                l--;
+                r++;
+            }
+        }
+        for (int i = 0; i < s.length() - 1; i++){
+            int l = i, r = i + 1, len = 0;
+            while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+                len += 2;
+                if (len > maxLen){
+                    maxLen = len;
+                    maxStr = s.substring(l, r + 1);
+                }
+                l--;
+                r++;
+            }
+        }
+        return maxStr;
+    }
+}
