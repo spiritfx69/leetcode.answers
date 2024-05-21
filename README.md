@@ -6,6 +6,8 @@
 | 2 | [Add Two Numbers](https://github.com/terenceqzhou/terence.leetcode.solutions/blob/main/src/0002.%20Add%20Two%20Numbers) | 🍋 Medium |
 | 3 | [Longest Substring Without Repeating Characters](https://github.com/terenceqzhou/terence.leetcode.solutions/blob/main/src/0003.%20Longest%20Substring%20Without%20Repeating%20Characters) | 🍋 Medium |
 | 5 | [Longest Palindromic Subsequence](https://github.com/terenceqzhou/terence.leetcode.solutions/blob/main/src/0005.%20Longest%20Palindromic%20Substring) | 🍋 Medium |
+| 6 | [Zigzag Conversion](https://github.com/terenceqzhou/leetcode.answers/blob/main/src/0006.%20Zigzag%20Conversion) | 🍋 Medium |
+| 7 | [Reverse Integer](https://github.com/terenceqzhou/leetcode.answers/blob/main/src/0007.%20Reverse%20Integer) | 🍋 Medium |
 | 122 | [Best Time to Buy and Sell Stock II](https://github.com/terenceqzhou/leet/blob/main/src/0122.%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II) | 🍋 Medium | Greedy, 121, 122 |
 | 135 | [Candy](https://github.com/terenceqzhou/leet/blob/main/src/0135.%20Candy) | 🌶️ Hard | Greedy |
 | 406 | [Queue Reconstruction by Height](https://github.com/terenceqzhou/leet/blob/main/src/0406.%20Queue%20Reconstruction%20by%20Height) | 🍋 Medium | Greedy, sort 2D vector |
