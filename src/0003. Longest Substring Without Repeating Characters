@@ -1,0 +1,41 @@
+// C++
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s)
+    {
+        set <char> let;
+        int l = 0, r = 0, maxCnt = 0;
+        while (l < s.length() && r < s.length()){
+            while (let.find(s[r]) != let.end()){
+                let.erase(s[l]);
+                l++;
+            }
+            let.insert(s[r]);
+            maxCnt = max(r - l + 1, maxCnt);
+            r++;
+        }
+        return maxCnt;
+   }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> let = new HashSet <>();
+        int l = 0, r = 0, maxCnt = 0;
+        while (l < s.length() && r < s.length()){
+            while (let.contains(s.charAt(r))){
+                let.remove(s.charAt(l));
+                l++;
+            }
+            let.add(s.charAt(r));
+            maxCnt = Math.max(r - l + 1, maxCnt);
+            r++;
+        }
+        return maxCnt;
+    }
+}
