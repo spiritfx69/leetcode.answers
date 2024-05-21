@@ -1,0 +1,64 @@
+// C++
+
+class Solution {
+public:
+    string convert(string s, int numRows)
+    {
+        if (numRows == 1) return s;
+        vector<string> res (numRows);
+        string newS = "";
+        int dir = 1, index = 0;
+        for (int i = 0; i < s.length(); i++){
+            res[index] += s[i];
+            if (dir == 1){
+                if (index == numRows - 1){
+                    dir = -1;
+                    index--; 
+                }
+                else index++;
+            }
+            else if (dir == -1){
+                if (index == 0){
+                    dir = 1;
+                    index++; 
+                }
+                else index--;
+            }
+        }
+        for (int i = 0; i < res.size(); i++) newS += res[i];
+        return newS;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        String[] res = new String[numRows];
+        for (int i = 0; i < numRows; i++) res[i] = "";
+        String newS = "";
+        int dir = 1, index = 0;
+        for (int i = 0; i < s.length(); i++){
+            res[index] += s.charAt(i);
+            if (dir == 1){
+                if (index == numRows - 1){
+                    dir = -1;
+                    index--; 
+                }
+                else index++;
+            }
+            else if (dir == -1){
+                if (index == 0){
+                    dir = 1;
+                    index++; 
+                }
+                else index--;
+            }
+        }
+        for (int i = 0; i < res.length; i++) newS += res[i];
+        return newS;
+    }
+}
