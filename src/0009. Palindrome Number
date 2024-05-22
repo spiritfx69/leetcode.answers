@@ -20,11 +20,11 @@ public:
 class Solution {
     public boolean isPalindrome(int x) {
         if (x < 0) return false;
-        Long oldX = Long.valueOf(x), newX = Long.valueOf(0);
+        long oldX = Long.valueOf(x), newX = Long.valueOf(0);
         while (x != 0){
             newX = newX * 10 + Long.valueOf(x % 10);
             x /= 10;
         }
-        return (oldX - newX == 0);
+        return (oldX == newX);
     }
 };
