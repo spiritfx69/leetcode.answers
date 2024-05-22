@@ -1,0 +1,32 @@
+// C++
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int maxA = 0;
+        int l = 0, r = height.size() - 1;
+        while (l < r){
+            maxA = max(maxA, min(height[l], height[r]) * (r - l));
+            if (height[l] <= height[r]) l++;
+            else r--;
+        }
+        return maxA;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public int maxArea(int[] height) {
+        int maxA = 0;
+        int l = 0, r = height.length - 1;
+        while (l < r){
+            maxA = Math.max(maxA, Math.min(height[l], height[r]) * (r - l));
+            if (height[l] <= height[r]) l++;
+            else r--;
+        }
+        return maxA;
+    }
+}
