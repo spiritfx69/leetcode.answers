@@ -1,0 +1,59 @@
+class Solution {
+public:
+    bool isNum(char c){
+        return c >= '0' && c <= '9';
+    }
+
+    int myAtoi(string s) {
+        int n = 0, mult = 1, flag = 0, index = 0;
+        while (s[index] == ' ') index++;
+        if (s[index] == '+') index++;
+        else if (s[index] == '-'){
+            mult = -1;
+            index++;
+        }
+        while (index < s.length() && isNum(s[index])){
+            if (n == 214748364 && s[index] > '7') return INT_MAX;
+            if (n > 214748364) return INT_MAX;
+            if (n == -214748364 && s[index] > '8') return INT_MIN;
+            if (n < -214748364) return INT_MIN;
+            n = n * 10 + ((s[index] - '0') * mult);
+            index++;
+        }
+        return n;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public Boolean isNum(char c){
+        return c >= '0' && c <= '9';
+    }
+
+    public int myAtoi(String s) {
+        if (s.length() == 0) return 0;
+        int n = 0, mult = 1, flag = 0, index = 0;
+        while (s.charAt(index) == ' '){
+            index++;
+            if (index >= s.length()) return 0;
+        }
+        if (s.charAt(index) == '+') index++;
+        else if (s.charAt(index) == '-'){
+            mult = -1;
+            index++;
+        }
+        if (index >= s.length()) return 0;
+        while (index < s.length() && isNum(s.charAt(index))){
+            if (n == 214748364 && s.charAt(index) > '7') return Integer.MAX_VALUE;
+            if (n > 214748364) return Integer.MAX_VALUE;
+            if (n == -214748364 && s.charAt(index) > '8') return Integer.MIN_VALUE;
+            if (n < -214748364) return Integer.MIN_VALUE;
+            n = n * 10 + ((s.charAt(index) - '0') * mult);
+            index++;
+        }
+        return n;
+    }
+}
