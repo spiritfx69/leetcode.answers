@@ -1,0 +1,49 @@
+// C++
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs)
+    {
+        int flag = 0, index = 0;
+        string res = "";
+        while (true){
+            if (index >= strs[0].length()) break;
+            for (int i = 1; i < strs.size(); i++){
+                if (index >= strs[i].length() ||
+                    strs[0][index] != strs[i][index]){
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1) break;
+            res += strs[0][index];
+            index++;
+        }
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        int flag = 0, index = 0;
+        String res = "";
+        while (true){
+            if (index >= strs[0].length()) break;
+            for (int i = 1; i < strs.length; i++){
+                if (index >= strs[i].length() ||
+                    strs[0].charAt(index) != strs[i].charAt(index)){
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1) break;
+            res += strs[0].charAt(index);
+            index++;
+        }
+        return res;
+    }
+}
