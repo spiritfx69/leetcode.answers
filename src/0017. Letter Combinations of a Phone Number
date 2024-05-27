@@ -1,0 +1,54 @@
+// C++
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if (digits.length() == 0) return {};
+        vector<string> res, temp;
+        res.push_back("");
+        map<char, string> numToLet = {{'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"},
+                                      {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}};
+        for (int i = 0; i < digits.length(); i++){
+            char ch = digits[i];
+            for (int j = 0; j < res.size(); j++)
+                for (int k = 0; k < numToLet[ch].length(); k++)
+                    temp.push_back(res[j] + numToLet[ch][k]);
+            res = temp;
+            temp.clear();
+        }
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        if (digits.length() == 0) return Collections.<String>emptyList();
+        List<String> res = new ArrayList<String>();
+        List<String> temp = new ArrayList<String>();
+        Map<Character, String> numToLet = new HashMap<Character, String>();
+        res.add("");
+        numToLet.put('2', "abc");
+        numToLet.put('3', "def");
+        numToLet.put('4', "ghi");
+        numToLet.put('5', "jkl");
+        numToLet.put('6', "mno");
+        numToLet.put('7', "pqrs");
+        numToLet.put('8', "tuv");
+        numToLet.put('9', "wxyz");
+        for (int i = 0; i < digits.length(); i++){
+            char ch = digits.charAt(i);
+            for (int j = 0; j < res.size(); j++)
+                for (int k = 0; k < numToLet.get(ch).length(); k++){
+                    temp.add(res.get(j) + numToLet.get(ch).charAt(k));
+                }
+            res.clear();
+            for (int j = 0; j < temp.size(); j++) res.add(temp.get(j));
+            temp.clear();
+        }
+        return res;
+    }
+}
