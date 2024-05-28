@@ -1,0 +1,40 @@
+// C++
+
+class Solution {
+public:
+    void para(string s, vector<string>& res, int l, int r, int len){
+        if (s.length() == len * 2){
+            res.push_back(s);
+            return;
+        }
+        if (l < len) para(s + '(', res, l + 1, r, len);
+        if (r < l) para(s + ')', res, l, r + 1, len);
+    }
+
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        para("", res, 0, 0, n);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public void para(String s, List<String> res, int l, int r, int len){
+        if (s.length() == len * 2){
+            res.add(s);
+            return;
+        }
+        if (l < len) para(s + '(', res, l + 1, r, len);
+        if (r < l) para(s + ')', res, l, r + 1, len);
+    }
+    
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        para("", res, 0, 0, n);
+        return res;
+    }
+}
