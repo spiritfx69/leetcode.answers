@@ -1,0 +1,36 @@
+// C++
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> c;
+        for (int i = 0; i < s.length(); i++){
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') c.push(s[i]);
+            else if ((s[i] == ')' || s[i] == ']' || s[i] == '}') && c.empty()) return false;
+            else if (s[i] == ')' && c.top() != '(') return false;
+            else if (s[i] == ']' && c.top() != '[') return false;
+            else if (s[i] == '}' && c.top() != '{') return false;
+            else c.pop();
+        }
+        return c.empty();
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> c = new Stack<>();
+        for (int i = 0; i < s.length(); i++){
+            if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') c.push(s.charAt(i));
+            else if ((s.charAt(i) == ')' || s.charAt(i) == ']' || s.charAt(i) == '}') && c.empty()) return false;
+            else if (s.charAt(i) == ')' && c.peek() != '(') return false;
+            else if (s.charAt(i) == ']' && c.peek() != '[') return false;
+            else if (s.charAt(i) == '}' && c.peek() != '{') return false;
+            else c.pop();
+        }
+        return c.empty();
+    }
+}
