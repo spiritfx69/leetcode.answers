@@ -1,0 +1,34 @@
+// C++
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int cnt = 0, l = 0;
+        for (int i = 0; i < nums.size(); i++)
+            if (nums[i] != val){
+                swap(nums[i], nums[l]);
+                l++;
+                cnt++;
+            }
+        return cnt;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int cnt = 0, l = 0;
+        for (int i = 0; i < nums.length; i++)
+            if (nums[i] != val){
+                int temp = nums[i];
+                nums[i] = nums[l];
+                nums[l] = temp;
+                l++;
+                cnt++;
+            }
+        return cnt;
+    }
+}
