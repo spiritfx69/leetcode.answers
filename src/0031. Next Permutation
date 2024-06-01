@@ -1,0 +1,49 @@
+// C++
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int index1 = nums.size() - 2, index2 = nums.size() - 1;
+        while (index1 >= 0 && nums[index1] >= nums[index1 + 1]) index1--;
+        if (index1 < 0){
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+        while (index2 >= index1 && nums[index2] <= nums[index1]) index2--;
+        swap(nums[index1], nums[index2]);
+        reverse(nums.begin() + index1 + 1, nums.end());
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public void swap(int index1, int index2, int[] nums){
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
+    }
+
+    public void reverse(int index1, int index2, int[] nums){
+        while (index1 < index2){
+            swap(index1, index2, nums);
+            index1++;
+            index2--;
+        }
+    }
+
+    public void nextPermutation(int[] nums) {
+        int temp, index1 = nums.length - 2, index2 = nums.length - 1;
+        while (index1 >= 0 && nums[index1] >= nums[index1 + 1]) index1--;
+        if (index1 < 0){
+            reverse(0, nums.length - 1, nums);
+            return;
+        }
+        while (index2 >= index1 && nums[index2] <= nums[index1]) index2--;
+        swap(index1, index2, nums);
+        reverse(index1 + 1, nums.length - 1, nums);
+        //reverse(nums.begin() + index1 + 1, nums.end());
+    }
+}
