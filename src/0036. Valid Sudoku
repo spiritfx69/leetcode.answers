@@ -1,0 +1,76 @@
+// C++
+
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        for (int i = 0; i < board.size(); i++){
+            set <char> n;
+            for (int j = 0; j < board[0].size(); j++){
+                if (board[i][j] == '.') continue;
+                if (n.find(board[i][j]) != n.end()) return false;
+                n.insert(board[i][j]);
+            }
+            n.clear();
+        }
+        for (int i = 0; i < board[0].size(); i++){
+            set <char> n;
+            for (int j = 0; j < board.size(); j++){
+                if (board[j][i] == '.') continue;
+                if (n.find(board[j][i]) != n.end()) return false;
+                n.insert(board[j][i]);
+            }
+            n.clear();
+        }
+        for (int i = 0; i <= 6; i += 3)
+            for (int j = 0; j <= 6; j += 3){
+                set <char> n;
+                for (int k = i; k <= i + 2; k++){
+                    for (int l = j; l <= j + 2; l++){
+                        if (board[k][l] == '.') continue;
+                        if (n.find(board[k][l]) != n.end()) return false;
+                        n.insert(board[k][l]);
+                    }
+                }
+                n.clear();
+            }
+        return true;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Set<Character> n = new HashSet<>();
+        for (int i = 0; i < board.length; i++){
+            for (int j = 0; j < board[0].length; j++){
+                if (board[i][j] == '.') continue;
+                if (n.contains(board[i][j])) return false;
+                n.add(board[i][j]);
+            }
+            n.clear();
+        }
+        for (int i = 0; i < board[0].length; i++){
+            for (int j = 0; j < board.length; j++){
+                if (board[j][i] == '.') continue;
+                if (n.contains(board[j][i])) return false;
+                n.add(board[j][i]);
+            }
+            n.clear();
+        }
+        for (int i = 0; i <= 6; i += 3)
+            for (int j = 0; j <= 6; j += 3){
+                for (int k = i; k <= i + 2; k++){
+                    for (int l = j; l <= j + 2; l++){
+                        if (board[k][l] == '.') continue;
+                        if (n.contains(board[k][l])) return false;
+                        n.add(board[k][l]);
+                    }
+                }
+                n.clear();
+            }
+        return true;
+    }
+}
