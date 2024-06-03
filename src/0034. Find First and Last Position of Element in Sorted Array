@@ -1,0 +1,51 @@
+// C++
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> res = {-1, -1};
+        if (nums.size() == 0) return res;
+        int l = 0, r = nums.size() - 1;
+        while (l <= r){
+            int m = (l + r) / 2;
+            if (nums[m] < target) l = m + 1;
+            else r = m - 1;
+        }
+        if (l < nums.size() && nums[l] == target) res[0] = l;
+        l = 0, r = nums.size() - 1;
+        while (l <= r){
+            int m = (l + r) / 2;
+            if (nums[m] <= target) l = m + 1;
+            else r = m - 1;
+        }
+        if (r >= 0 && nums[r] == target) res[1] = r;
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] res = {-1, -1};
+        if (nums.length == 0) return res;
+        int l = 0, r = nums.length - 1;
+        while (l <= r){
+            int m = (l + r) / 2;
+            if (nums[m] < target) l = m + 1;
+            else r = m - 1;
+        }
+        if (l < nums.length && nums[l] == target) res[0] = l;
+        l = 0;
+        r = nums.length - 1;
+        while (l <= r){
+            int m = (l + r) / 2;
+            if (nums[m] <= target) l = m + 1;
+            else r = m - 1;
+        }
+        if (r >= 0 && nums[r] == target) res[1] = r;
+        return res;
+    }
+}
