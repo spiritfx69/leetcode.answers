@@ -1,0 +1,52 @@
+// C++
+
+class Solution {
+public:
+    void combo(int sum, int index, vector<vector<int>>& res, vector<int>& n, vector<int>& candidates, int target){
+        if (sum == target){
+            res.push_back(n);
+            return;
+        }
+        for (int i = index; i < candidates.size(); i++){
+            if (sum + candidates[i] <= target){
+                n.push_back(candidates[i]);
+                combo(sum + candidates[i], i, res, n, candidates, target);
+                n.pop_back();
+            }
+        }
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> n;
+        vector<vector<int>> res;
+        combo(0, 0, res, n, candidates, target);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public void combo(int sum, int index, ArrayList<List<Integer>> res, List<Integer> n, int[] candidates, int target){
+        if (sum == target){
+            res.add(new ArrayList<Integer>(n));
+            return;
+        }
+        for (int i = index; i < candidates.length; i++){
+            if (sum + candidates[i] <= target){
+                n.add(candidates[i]);
+                combo(sum + candidates[i], i, res, n, candidates, target);
+                n.remove(n.size() - 1);
+            }
+        }
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> n = new ArrayList<Integer>();
+        ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
+        combo(0, 0, res, n, candidates, target);
+        return res;
+    }
+}
