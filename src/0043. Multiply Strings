@@ -1,0 +1,61 @@
+// C++
+
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        if (num1 == "0" || num2 == "0") return "0";
+        if (num2.length() > num1.length()) swap(num1, num2);
+        string product = "";
+        vector<int> prod (num1.length() + num2.length());
+        for (int i = num2.length() - 1; i >= 0; i--){
+            for (int j = num1.length() - 1; j >= 0; j--){
+                int n1 = num1[j] - '0', n2 = num2[i] - '0';
+                int sum = (n1 * n2) % 10, carry = (n1 * n2) / 10;
+                prod[i + j + 1] += sum;
+                if (carry > 0) prod[i + j] += carry;
+            }
+        }
+        for (int i = prod.size() - 1; i >= 1; i--){
+            prod[i - 1] += prod[i] / 10;
+            prod[i] = prod[i] % 10;
+        }
+        int index = 0;
+        while (prod[index] == 0) index++;
+        for (int i = index; i < prod.size(); i++)  product += (prod[i] + '0');
+        return product;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String multiply(String num1, String num2) {
+        if (num1.equals("0") || num2.equals("0")) return "0";
+        if (num2.length() > num1.length()){
+            String temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
+        String product = "";
+        List<Integer> prod = new ArrayList<Integer>();
+        for (int i = 0; i < num1.length() + num2.length(); i++) prod.add(0);
+        for (int i = num2.length() - 1; i >= 0; i--){
+            for (int j = num1.length() - 1; j >= 0; j--){
+                int n1 = num1.charAt(j) - '0', n2 = num2.charAt(i) - '0';
+                int sum = (n1 * n2) % 10, carry = (n1 * n2) / 10;
+                prod.set(i + j + 1, prod.get(i + j + 1) + sum);
+                if (carry > 0) prod.set(i + j, prod.get(i + j) + carry);
+            }
+        }
+        for (int i = prod.size() - 1; i >= 1; i--){
+            prod.set(i - 1, prod.get(i - 1) + prod.get(i) / 10);
+            prod.set(i, prod.get(i) % 10);
+        }
+        int index = 0;
+        while (index < prod.size() && prod.get(index) == 0) index++;
+        for (int i = index; i < prod.size(); i++) product += String.valueOf(prod.get(i));
+        return product;
+    }
+}
