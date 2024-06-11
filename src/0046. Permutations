@@ -1,0 +1,58 @@
+// C++
+
+class Solution {
+public:
+    void perm(vector<int>& nums, vector<int>& flag, vector<int>& n, vector<vector<int>>& res){
+        if (n.size() == nums.size()){
+            res.push_back(n);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++){
+            if (flag[i] == 0){
+                n.push_back(nums[i]);
+                flag[i] = 1;
+                perm(nums, flag, n, res);
+                flag[i] = 0;
+                n.pop_back();
+            }
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<int> n;
+        vector<int> flag (nums.size());
+        vector<vector<int>> res;
+        perm(nums, flag, n, res);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    void perm(int[] nums, int[] flag, List<Integer> n, List<List<Integer>> res){
+        if (n.size() == nums.length){
+            res.add(new ArrayList<Integer>(n));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++){
+            if (flag[i] == 0){
+                n.add(nums[i]);
+                flag[i] = 1;
+                perm(nums, flag, n, res);
+                flag[i] = 0;
+                n.remove(n.size() - 1);
+            }
+        }
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        List<Integer> n = new ArrayList<Integer>();
+        int[] flag = new int[nums.length];
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        perm(nums, flag, n, res);
+        return res;
+    }
+}
