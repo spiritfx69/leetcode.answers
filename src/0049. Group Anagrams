@@ -1,0 +1,36 @@
+// C++
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> res;
+        unordered_map<string, vector<string>> saveStr;
+            string sortStr = strs[i];
+            sort(sortStr.begin(), sortStr.end());
+            saveStr[sortStr].push_back(strs[i]);
+        }
+        for (auto it : saveStr) res.push_back(it.second);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> res = new ArrayList<List<String>>();
+        Map<String, List<String>> saveStr = new HashMap<>();
+        for (int i = 0; i < strs.length; i++){
+            char[] chars = (strs[i]).toCharArray();
+            Arrays.sort(chars);
+            String sortStr = new String(chars);
+            if (!saveStr.containsKey(sortStr)) saveStr.put(sortStr, new ArrayList());
+            saveStr.get(sortStr).add(strs[i]);
+        }
+        for (List<String> it : saveStr.values()) res.add(it);
+        return res;
+    }
+}
+
