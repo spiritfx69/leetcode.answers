@@ -1,0 +1,55 @@
+// C++
+
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        intervals.push_back(newInterval);
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>> res;
+        int start = intervals[0][0], end = intervals[0][1];
+        for (int i = 1; i < intervals.size(); i++){
+            if (intervals[i][0] <= end) end = max(end, intervals[i][1]);
+            else{
+                res.push_back({start, end});
+                start = intervals[i][0];
+                end = intervals[i][1];
+            }
+        }
+        res.push_back({start, end});
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        int[][] newIntervals = new int[intervals.length + 1][2];
+        for (int i = 0; i < intervals.length; i++) newIntervals[i] = intervals[i];
+        newIntervals[newIntervals.length - 1] = newInterval;
+        Arrays.sort(newIntervals, new Comparator<int[]>(){
+            public int compare(int[] a,int[] b){
+                return a[0] - b[0];
+            }
+        });
+        List<List<Integer>> merged = new ArrayList<List<Integer>>();
+        int start = newIntervals[0][0], end = newIntervals[0][1];
+        for (int i = 1; i < newIntervals.length; i++){
+            if (newIntervals[i][0] <= end) end = Math.max(end, newIntervals[i][1]);
+            else{
+                merged.add(Arrays.asList(start, end));
+                start = newIntervals[i][0];
+                end = newIntervals[i][1];
+            }
+        }
+        merged.add(Arrays.asList(start, end));
+        int[][] res = new int[merged.size()][2];
+        for (int i = 0; i < merged.size(); i++){
+            res[i][0] = merged.get(i).get(0);
+            res[i][1] = merged.get(i).get(1);
+        }
+        return res;
+    }
+}
