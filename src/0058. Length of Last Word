@@ -1,0 +1,38 @@
+// C++
+
+class Solution {
+public:
+    bool isLetter(char ch){
+        return ('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z');
+    }
+
+    int lengthOfLastWord(string s) {
+        int cnt = 0, index = s.length() - 1;
+        while (s[index] == ' ') index--;
+        while (index >= 0 && isLetter(s[index])){
+            cnt++;
+            index--;
+        }
+        return cnt;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public Boolean isLetter(Character ch){
+        return ('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z');
+    }
+
+    public int lengthOfLastWord(String s) {
+        int cnt = 0, index = s.length() - 1;
+        while (s.charAt(index) == ' ') index--;
+        while (index >= 0 && isLetter(s.charAt(index))){
+            cnt++;
+            index--;
+        }
+        return cnt;
+    }
+}
