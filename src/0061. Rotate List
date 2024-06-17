@@ -1,0 +1,58 @@
+// C++
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (head == NULL) return NULL;
+        if (head->next == NULL) return head;
+        ListNode* old = head;
+        int n;
+        for (n = 1; old->next != NULL; n++) old = old->next;
+        old->next = head;
+        ListNode* newH = head;
+        for (int i = 0; i < n - k % n - 1; i++) newH = newH->next;
+        ListNode* newH_head = newH->next;
+        newH->next = NULL;
+        return newH_head;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) return null;
+        if (head.next == null) return head;
+        ListNode old = head;
+        int n;
+        for (n = 1; old.next != null; n++) old = old.next;
+        old.next = head;
+        ListNode newH = head;
+        for (int i = 0; i < n - (k % n) - 1; i++) newH = newH.next;
+        ListNode new_head = newH.next;
+        newH.next = null;
+        return new_head;
+    }
+}
