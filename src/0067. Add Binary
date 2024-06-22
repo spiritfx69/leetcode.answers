@@ -1,0 +1,39 @@
+// C++
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int carry = 0;
+        string sum = "";
+        while (a.length() < b.length()) a = '0' + a;
+        while (b.length() < a.length()) b = '0' + b;
+        for (int i = a.length() - 1; i >= 0; i--){
+            int n = a[i] - '0' + b[i] - '0' + carry;
+            sum += (n % 2) + '0';
+            carry = n / 2;
+        }
+        if (carry == 1) sum += '1';
+        reverse(sum.begin(), sum.end());
+        return sum;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String addBinary(String a, String b) {
+        int carry = 0;
+        String sum = "";
+        while (a.length() < b.length()) a = '0' + a;
+        while (b.length() < a.length()) b = '0' + b;
+        for (int i = a.length() - 1; i >= 0; i--){
+            int n = a.charAt(i) - '0' + b.charAt(i) - '0' + carry;
+            sum = (char) (n % 2 + '0') + sum;
+            carry = n / 2;
+        }
+        if (carry == 1) sum = '1' + sum;
+        return sum;
+    }
+}
