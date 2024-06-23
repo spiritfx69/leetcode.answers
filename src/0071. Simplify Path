@@ -1,0 +1,53 @@
+// C++
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        int len = 0;
+        string part = "", newPath = "";
+        stack<string> p;
+        for (int i = 1; i < path.length(); i++){
+            if (path[i] == '/'){
+                if (part == ".." && !p.empty()) p.pop();
+                else if (part != ".." && part != "." && part != "") p.push("/" + part);
+                part = "";
+                continue;
+            }
+            part += path[i];
+        }
+        if (part == ".." && !p.empty()) p.pop();
+        else if (part != ".." && part != "." && part != "") p.push("/" + part);
+        while (!p.empty()){
+            newPath = p.top() + newPath;
+            p.pop();
+        }
+        if (newPath == "") return "/";
+        return newPath;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String simplifyPath(String path) {
+        int len = 0;
+        String part = "", newPath = "";
+        Stack<String> p = new Stack<String>();
+        for (int i = 1; i < path.length(); i++){
+            if (path.charAt(i) == '/'){
+                if (part.equals("..") && !p.empty()) p.pop();
+                else if (!part.equals("..") && !part.equals(".") && !part.equals("")) p.push("/" + part);
+                part = "";
+                continue;
+            }
+            part += path.charAt(i);
+        }
+        if (part.equals("..") && !p.empty()) p.pop();
+        else if (!part.equals("..") && !part.equals(".") && !part.equals("")) p.push("/" + part);
+        while (!p.empty()) newPath = p.pop() + newPath;
+        if (newPath.equals("")) return "/";
+        return newPath;
+    }
+}
