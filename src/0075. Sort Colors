@@ -1,0 +1,48 @@
+// C++
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int pos0 = 0, index = 0, pos2 = nums.size() - 1;
+        while (index <= pos2){
+            if (nums[index] == 0){
+                swap(nums[pos0], nums[index]);
+                index++;
+                pos0++;
+            }
+            else if (nums[index] == 2){
+                swap(nums[pos2], nums[index]);
+                pos2--;
+            }
+            else index++;
+        }
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public void swap(int index1, int index2, int nums[]){
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
+    }
+    
+    public void sortColors(int[] nums) {
+        int pos0 = 0, index = 0, pos2 = nums.length - 1;
+        while (index <= pos2){
+            if (nums[index] == 0){
+                swap(pos0, index, nums);
+                index++;
+                pos0++;
+            }
+            else if (nums[index] == 2){
+                swap(pos2, index, nums);
+                pos2--;
+            }
+            else index++;
+        }
+    }
+}
