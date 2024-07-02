@@ -1,0 +1,48 @@
+// C++
+
+class Solution {
+public:
+    void comb(vector<vector<int>>& res, vector<int>& n, vector<int>& nums, int index, int cnt){
+        if (n.size() == cnt){
+            res.push_back(n);
+            return;
+        }
+        for (int i = index; i < nums.size(); i++){
+            n.push_back(nums[i]);
+            comb(res, n, nums, i + 1, cnt);
+            n.pop_back();
+        }
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> n;
+        vector<vector<int>> res;
+        for (int i = 0; i <= nums.size(); i++) comb(res, n, nums, 0, i);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    void comb(List<List<Integer>> res, List<Integer> n, int[] nums, int index, int cnt){
+        if (n.size() == cnt){
+            res.add(new ArrayList<Integer>(n));
+            return;
+        }
+        for (int i = index; i < nums.length; i++){
+            n.add(nums[i]);
+            comb(res, n, nums, i + 1, cnt);
+            n.remove(n.size() - 1);
+        }
+    }
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<Integer> num = new ArrayList<Integer>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        for (int i = 0; i <= nums.length; i++) comb(res, num, nums, 0, i);
+        return res;
+    }
+}
