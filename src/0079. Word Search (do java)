@@ -1,0 +1,43 @@
+// C++
+
+class Solution {
+public:
+    bool found = false;
+
+    void findWord(vector<vector<char>>& board, vector<vector<int>>& flag, string word, string fWord, int r, int c, int index){
+        if (index == fWord.length()){
+            if (word == fWord) found = true;
+            return;
+        }
+        int dr[4] = {-1, 0, 0, 1}, dc[4] = {0, -1, 1, 0};
+        for (int i = 0; i < 4; i++){
+            if (flag[r + dr[i]][c + dc[i]] == 0 && board[r + dr[i]][c + dc[i]] == fWord[index]){
+                flag[r][c] = 1;
+                findWord(board, flag, word + fWord[index], fWord, r + dr[i], c + dc[i], index + 1);
+                flag[r][c] = 0;
+            }
+        }
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        int r = board.size(), c = board[0].size();
+        vector<vector<int>> flag(r + 2, vector<int>(c + 2));
+        vector<vector<char>> newBoard(r + 2, vector<char>(c + 2));
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < c; j++)
+                newBoard[i + 1][j + 1] = board[i][j];
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < c; j++)
+                if (board[i][j] == word[0]){
+                    string firstCh;
+                    firstCh += board[i][j];
+                    findWord(newBoard, flag, firstCh, word, i + 1, j + 1, 1);
+                    if (found) return true;
+                }
+        return false;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
