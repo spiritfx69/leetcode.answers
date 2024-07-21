@@ -41,3 +41,42 @@ public:
 ———————————————————————————————————————————————————————————————
 
 // Java
+
+class Solution {
+    private boolean found = false;
+    
+    public void findWord(char[][] board, int[][] flag, String word, String fWord, int r, int c, int index){
+        if (index == fWord.length()){
+            if (word.equals(fWord)) found = true;
+            return;
+        }
+        int[] dr = {-1, 0, 0, 1};
+        int[] dc = {0, -1, 1, 0};
+        for (int i = 0; i < 4; i++){
+            char ch = board[r + dr[i]][c + dc[i]];
+            if (flag[r + dr[i]][c + dc[i]] == 0 && ch == fWord.charAt(index)){
+                flag[r][c] = 1;
+                findWord(board, flag, word + fWord.charAt(index), fWord, r + dr[i], c + dc[i], index + 1);
+                flag[r][c] = 0;
+            }
+        }
+    }
+
+    public boolean exist(char[][] board, String word) {
+        int r = board.length, c = board[0].length;
+        int[][] flag = new int[r + 2][c + 2];
+        char[][] newBoard = new char[r + 2][c + 2];
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < c; j++)
+                newBoard[i + 1][j + 1] = board[i][j];
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < c; j++)
+                if (board[i][j] == word.charAt(0)){
+                    String firstCh = "";
+                    firstCh += board[i][j];
+                    findWord(newBoard, flag, firstCh, word, i + 1, j + 1, 1);
+                    if (found) return true;
+                }
+        return false;
+    }
+}
