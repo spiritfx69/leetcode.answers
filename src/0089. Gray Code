@@ -1,0 +1,42 @@
+// C++
+
+class Solution {
+public:
+    void gray(vector<int>& res, int n){
+        if (n == 0){
+            res.push_back(0);
+            return;
+        }
+        gray(res, n - 1);
+        int cnt = res.size(), num = 1 << (n - 1);
+        for (int i = cnt - 1; i >= 0; i--) res.push_back(res[i] | num);
+    }
+
+    vector<int> grayCode(int n) {
+        vector<int> res;
+        gray(res, n);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    void gray(List<Integer> res, int n){
+        if (n == 0){
+            res.add(0);
+            return;
+        }
+        gray(res, n - 1);
+        int cnt = res.size(), num = 1 << (n - 1);
+        for (int i = cnt - 1; i >= 0; i--) res.add(res.get(i) | num);
+    }
+
+    public List<Integer> grayCode(int n) {
+        List<Integer> res = new ArrayList<Integer>();
+        gray(res, n);
+        return res;
+    }
+}
