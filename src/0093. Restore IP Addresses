@@ -1,0 +1,61 @@
+// C++
+
+class Solution {
+public:
+    string addDot(string ip, int index){
+        return ip.substr(0, index) + '.' + ip.substr(index);
+    }
+
+    void makeIP(vector<string>& res, string ip, string s, int index, int dotCnt){
+        if (dotCnt == 4 && index < s.length()) return;
+        if (dotCnt == 4 && index == s.length()){
+            res.push_back(ip.substr(0, ip.length() - 1));
+            return;
+        }
+        if (index <= s.length() - 3 && 100 <= stoi(s.substr(index, 3)) && stoi(s.substr(index, 3)) <= 255)
+            makeIP(res, addDot(ip, index + 3 + dotCnt), s, index + 3, dotCnt + 1);
+        if (index <= s.length() - 2 && 10 <= stoi(s.substr(index, 2)) && stoi(s.substr(index, 2)) <= 99)
+            makeIP(res, addDot(ip, index + 2 + dotCnt), s, index + 2, dotCnt + 1);
+        if (index <= s.length() - 1)
+            makeIP(res, addDot(ip, index + 1 + dotCnt), s, index + 1, dotCnt + 1);
+    }
+
+    vector<string> restoreIpAddresses(string s) {
+        if (s.length() < 4 || s.length() > 12) return {};
+        vector<string> res;
+        makeIP(res, s, s, 0, 0);
+        return res;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    
+    public String addDot(String ip, int index){
+        return ip.substring(0, index) + '.' + ip.substring(index);
+    }
+
+    public void makeIP(List<String> res, String ip, String s, int index, int dotCnt){
+        if (dotCnt == 4 && index < s.length()) return;
+        if (dotCnt == 4 && index == s.length()){
+            res.add(ip.substring(0, ip.length() - 1));
+            return;
+        }
+        if (index <= s.length() - 3 && 100 <= Integer.valueOf(s.substring(index, index + 3)) && Integer.valueOf(s.substring(index, index + 3)) <= 255)
+            makeIP(res, addDot(ip, index + 3 + dotCnt), s, index + 3, dotCnt + 1);
+        if (index <= s.length() - 2 && 10 <= Integer.valueOf(s.substring(index, index + 2)) && Integer.valueOf(s.substring(index, index + 2)) <= 99)
+            makeIP(res, addDot(ip, index + 2 + dotCnt), s, index + 2, dotCnt + 1);
+        if (index <= s.length() - 1)
+            makeIP(res, addDot(ip, index + 1 + dotCnt), s, index + 1, dotCnt + 1);
+    }
+
+    public List<String> restoreIpAddresses(String s) {
+        List<String> res = new ArrayList<String>();
+        if (s.length() < 4 || s.length() > 12) return res;
+        makeIP(res, s, s, 0, 0);
+        return res;
+    }
+}
