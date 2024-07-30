@@ -1,0 +1,45 @@
+// C++
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if (nums.size() == 0) return 0;
+        set <int> n;
+        for (int i = 0; i < nums.size(); i++) n.insert(nums[i]);
+        int maxCnt = 1;
+        for (auto it : n){
+            int num = it, cnt = 1;
+            if (n.find(num + 1) != n.end()) continue;
+            while (n.find(num - 1) != n.end()){
+                num--;
+                cnt++;
+                maxCnt = max(cnt, maxCnt);
+            }
+        }
+        return maxCnt;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if (nums.length == 0) return 0;
+        Set <Integer> n = new HashSet<Integer>();
+        for (int i = 0; i < nums.length; i++) n.add(nums[i]);
+        Iterator it = n.iterator();
+        int maxCnt = 1;
+        while (it.hasNext()){
+            int num = (int) it.next(), cnt = 1;
+            if (n.contains(num + 1)) continue;
+            while (n.contains(num - 1)){
+                num--;
+                cnt++;
+                maxCnt = Math.max(cnt, maxCnt);
+            }
+        }
+        return maxCnt;
+    }
+}
