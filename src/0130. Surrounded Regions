@@ -1,0 +1,73 @@
+// C++
+
+class Solution {
+public:
+    void fill(vector<vector<char>>& board, int foundR, int foundC, int rCnt, int cCnt){
+        int dr[4] = {-1, 0, 0, 1}, dc[4] = {0, -1, 1, 0};
+        queue<pair<int, int>> rc;
+        rc.push({foundR, foundC});
+        while (!rc.empty()){
+            int r = rc.front().first, c = rc.front().second;
+            board[r][c] = 'o';
+            rc.pop();
+            for (int i = 0; i < 4; i++)
+                if (r + dr[i] >= 0 && r + dr[i] < rCnt &&
+                    c + dc[i] >= 0 && c + dc[i] < cCnt &&
+                    board[r + dr[i]][c + dc[i]] == 'O'){
+                    board[r + dr[i]][c + dc[i]] = 'o';
+                    rc.push({r + dr[i], c + dc[i]});
+                }
+        }
+    }
+
+    void solve(vector<vector<char>>& board) {
+        int rCnt = board.size(), cCnt = board[0].size();
+        for (int i = 0; i < rCnt; i++)
+            for (int j = 0; j < cCnt; j++)
+                if ((i == 0 || j == 0 || i == rCnt - 1 || j == cCnt - 1) &&
+                    board[i][j] == 'O') fill(board, i, j, rCnt, cCnt);
+        for (int i = 0; i < rCnt; i++)
+            for (int j = 0; j < cCnt; j++){
+                if (board[i][j] == 'o') board[i][j] = 'O';
+                else if (board[i][j] == 'O') board[i][j] = 'X';
+            }
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    void fill(char[][] board, int foundR, int foundC, int rCnt, int cCnt){
+        int[] dr = {-1, 0, 0, 1}, dc = {0, -1, 1, 0};
+        Queue<Pair<Integer, Integer>> rc = new LinkedList<>();
+        rc.add(new Pair<Integer, Integer> (foundR, foundC));
+        while (rc.size() != 0){
+            int r = rc.peek().getKey(), c = rc.peek().getValue();
+            board[r][c] = 'o';
+            rc.remove(rc.peek());
+            for (int i = 0; i < 4; i++){
+                if (r + dr[i] >= 0 && r + dr[i] < rCnt &&
+                    c + dc[i] >= 0 && c + dc[i] < cCnt &&
+                    board[r + dr[i]][c + dc[i]] == 'O'){
+                    board[r + dr[i]][c + dc[i]] = 'o';
+                    rc.add(new Pair<Integer, Integer> (r + dr[i], c + dc[i]));
+                }
+            }
+        }
+    }
+    
+    public void solve(char[][] board) {
+        int rCnt = board.length, cCnt = board[0].length;
+        for (int i = 0; i < rCnt; i++)
+            for (int j = 0; j < cCnt; j++)
+                if ((i == 0 || j == 0 || i == rCnt - 1 || j == cCnt - 1) &&
+                    board[i][j] == 'O') fill(board, i, j, rCnt, cCnt);
+        for (int i = 0; i < rCnt; i++)
+            for (int j = 0; j < cCnt; j++){
+                if (board[i][j] == 'o') board[i][j] = 'O';
+                else if (board[i][j] == 'O') board[i][j] = 'X';
+            }
+    }
+}
