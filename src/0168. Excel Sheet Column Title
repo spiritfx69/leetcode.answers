@@ -1,0 +1,54 @@
+// C++
+
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        string s = "";
+        while (columnNumber > 26){
+            int n = columnNumber % 26;
+            if (n == 0){
+                s += 'Z';
+                columnNumber -= 26;
+            }
+            else{
+                s += 'A' + (n - 1);
+                columnNumber -= n;
+            }
+            columnNumber /= 26;
+        }
+        s += 'A' + (columnNumber - 1);
+        reverse(s.begin(), s.end());
+        return s;
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public String reverse(String s){
+        String str = "";
+        for (int i = s.length() - 1; i >= 0; i--) str += s.charAt(i);
+        return str;
+    }
+
+    public String convertToTitle(int columnNumber) {
+        String s = "";
+        while (columnNumber > 26){
+            int n = columnNumber % 26;
+            if (n == 0){
+                s += 'Z';
+                columnNumber -= 26;
+            }
+            else{
+                s += (char) ('A' + (n - 1));
+                columnNumber -= n;
+            }
+            columnNumber /= 26;
+        }
+        s += (char) ('A' + (columnNumber - 1));
+        s = reverse(s);
+        return s;
+    }
+}
