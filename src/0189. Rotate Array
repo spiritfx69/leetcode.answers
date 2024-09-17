@@ -1,0 +1,26 @@
+// C++
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        reverse(nums.begin(), nums.end());
+        for (int i = 0; i < k; i++) nums.push_back(nums[i]);
+        reverse(nums.begin(), nums.end());
+        for (int i = 0; i < k; i++) nums.pop_back();
+    }
+};
+
+———————————————————————————————————————————————————————————————
+
+// Java
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        List<Integer> n = new ArrayList<Integer>();
+        for (int i = 0; i < nums.length; i++) n.add(nums[i]);
+        Collections.reverse(n);
+        for (int i = 0; i < k; i++) n.add(n.get(i));
+        Collections.reverse(n);
+        for (int i = 0; i < nums.length; i++) nums[i] = n.get(i);
+    }
+}
